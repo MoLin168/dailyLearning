@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>es6 Set</title>
+	<script>
+		//特点：1.成员的值是唯一的；2.Set函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化；3.在Set内部，NaN是相等的，对象是不相等的；
+		let set = new Set();
+		let a = NaN;
+		let b = NaN;
+		set.add(a);
+		set.add(b);
+		console.log(set) // Set {NaN}
+
+		let set2 = new Set();
+		set2.add({});
+		set2.size // 1
+
+		set2.add({});
+		console.log(set2.size); // 2
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
