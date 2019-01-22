@@ -18,6 +18,35 @@
 
 		set2.add({});
 		console.log(set2.size); // 2
+		//2.Set实例操作方法：(4个)
+		//add(value):添加某个值，返回Set结构本身;
+		//delete(value):删除某个值，返回一个boolean值，代表是否成功
+		//has(value):返回一个boolean值，表示该值是否为Set成员
+		//clear():清除所有成员，没有返回值
+		//3.去除数组重复的元素方式----利用Set成员唯一性的原理
+		let bb = [12,23,3,3,33,3321,12,23];
+		console.log(Array.from(new Set(bb)));
+		//4.Set遍历方法：（4个）
+		//keys():返回键名的遍历器
+		//values():返回键值的遍历器
+		//entries():返回键值对的遍历器
+		//forEach():使用回调函数遍历每个成员
+		
+		//由于 Set 结构没有键名，只有键值（或者说键名和键值是同一个值）,所以keys方法和values方法的行为完全一致。
+		let ddd = new Set(['hh','sda','dasd']);
+		for(let item of ddd.keys()){
+			console.log("keys()----"+item);
+		}
+
+		for(let item of ddd.values()){
+			console.log("values()----"+item);
+		}
+
+		for(let [item,value] of ddd.entries()){
+			console.log("entries()----item="+item+",value="+value);
+		}
+		//默认遍历器生成函数就是它的values方法,Set是可遍历的iterable
+		console.log(Set.prototype[Symbol.iterator] === Set.prototype.values);
 	</script>
 </head>
 <body>
