@@ -45,8 +45,46 @@
 		for(let [item,value] of ddd.entries()){
 			console.log("entries()----item="+item+",value="+value);
 		}
+
 		//默认遍历器生成函数就是它的values方法,Set是可遍历的iterable
 		console.log(Set.prototype[Symbol.iterator] === Set.prototype.values);
+		//说明可以直接执行for..of...遍历Set实例
+		for(let item of ddd){
+			console.log("iterator----item="+item);
+		}
+
+		//forEach() 箭头函数() => {...}
+		ddd.forEach((key,value) => {
+			console.log("forEach----key="+key+",value="+value);
+		});
+
+		//扩展运算符用于Set数据结构,因为扩展运算符（...）内部使用for...of循环
+		let arrFor = new Set(['red', 'green', 'blue']);
+		let arr = [...arrFor];
+		console.log("扩展运算符="+arr);
+
+		//arr的map
+		let set44 = new Set([1, 2, 3]);
+		let add = [...set44].map(x => x * 2);
+		set44 = new Set([...set44].map(x => x * 2));
+		let addf = [...set44];
+		console.log("set44="+set44+",add="+add+",addf="+addf);// 返回Set结构：{2, 4, 6}
+		
+		//arr的filter
+		let sset = new Set([1, 2, 3, 4, 5]);
+		sset = new Set([...sset].filter(x => (x % 2) == 0));
+		console.log("filter----sset="+sset+",for..of="+[...sset]);
+
+		//Set实现并集、交集、差集
+		let aaa = new Set([1,2,34,5]);
+		let bbb = new Set([1,34,5,22,3]);
+
+		let union = new Set([...aaa,...bbb]);
+		let intersect = new Set([...aaa].filter(x => bbb.has(x)));
+		let difference = new Set([...aaa].filter(x => !bbb.has(x)));
+		console.log("union="+[...union]+",intersect="+[...intersect]+",difference="+[...difference]);
+
+		
 	</script>
 </head>
 <body>	

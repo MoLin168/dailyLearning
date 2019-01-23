@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>箭头函数</title>
+	<script>
+		//1.介绍：箭头函数是一种简单fn的写法，在es6上开始使用，其特点有:不绑定this和arguments;代码简单;
+		//2.简单概括：
+		// function(){
+		// 	console.log('hello');
+		// }
+		// 简化写法为() => console.log('hello');
+		//3.说下其特点：范例1
+		function Person () {
+		  this.name = 'little bear',
+		  this.age = 18
+		  this.out = () => {
+		  		console.log('我叫' + this.name + '我今年' + this.age + '岁')
+			}
+		}
+		let p = new Person();
+		p.out();
+		//范例2
+		let funcTest = (...argu) => console.log("argu="+argu);
+		funcTest(1,32);
+		//4.不能使用箭头函数的情况：
+		/**
+		 * 1.定义原型方法时
+		 * 2.
+		 */
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
