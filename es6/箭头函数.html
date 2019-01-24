@@ -23,11 +23,18 @@
 		//范例2
 		let funcTest = (...argu) => console.log("argu="+argu);
 		funcTest(1,32);
-		//4.不能使用箭头函数的情况：
-		/**
-		 * 1.定义原型方法时
-		 * 2.
-		 */
+		//4.不能使用箭头函数的情况：参考，https://zhuanlan.zhihu.com/p/26540168
+		//1).定义字面量方法
+		const calculator = {
+		    array: [1, 2, 3],
+		    sum: () => {
+		        console.log(this === window); // => true
+		        return this.array.reduce((result, item) => result + item);
+		    }
+		};
+		console.log(this === window); // => true
+		//calculator.sum();// Throws "TypeError: Cannot read property 'reduce' of undefined"
+		//2).
 	</script>
 </head>
 <body>
