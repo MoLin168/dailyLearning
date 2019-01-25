@@ -34,7 +34,19 @@
 		};
 		console.log(this === window); // => true
 		//calculator.sum();// Throws "TypeError: Cannot read property 'reduce' of undefined"
-		//2).
+		//调用 calculator.sum 的时候，执行上下文里面的 this 仍然指向的是 window，原因是箭头函数把函数上下文绑定到了 window 上
+		//2).定义原型方法
+		function Cat(name) {
+		    this.name = name;
+		}
+
+		Cat.prototype.sayCatName = () => {
+		    console.log(this === window); // => true
+		    return this.name;//当使用箭头函数时，此时调用这个方法，this已经被指向为window对象了，而不是new出来的实例
+		};
+
+		const cat = new Cat('Mew');
+		cat.sayCatName(); // => undefined
 	</script>
 </head>
 <body>
