@@ -47,9 +47,16 @@
 
 		const cat = new Cat('Mew');
 		cat.sayCatName(); // => undefined
+		//3)定义事件函数回调
+		// var button = document.getElementById('myButton');
+		// button.addEventListener('click', () => {
+		//     console.log(this === window); // => true
+		//     this.innerHTML = 'Clicked button';
+		// });//此时的this指向的是window，因为箭头函数
+		
 	</script>
 </head>
 <body>
-	
+	<div id="myButton" style="width: 200px;height:200px;border:1px solid red;position: relative;top:0px;left:0px;"></div>
 </body>
 </html>
