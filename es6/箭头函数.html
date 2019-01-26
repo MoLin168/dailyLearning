@@ -9,7 +9,7 @@
 		// function(){
 		// 	console.log('hello');
 		// }
-		// 简化写法为() => console.log('hello');
+		// 简化写法为 () => console.log('hello');
 		//3.说下其特点：范例1
 		function Person () {
 		  this.name = 'little bear',
@@ -44,7 +44,6 @@
 		    console.log(this === window); // => true
 		    return this.name;//当使用箭头函数时，此时调用这个方法，this已经被指向为window对象了，而不是new出来的实例
 		};
-
 		const cat = new Cat('Mew');
 		cat.sayCatName(); // => undefined
 		//3)定义事件函数回调
@@ -53,7 +52,11 @@
 		//     console.log(this === window); // => true
 		//     this.innerHTML = 'Clicked button';
 		// });//此时的this指向的是window，因为箭头函数
-		
+		//4)定义构造函数
+		const Message = (text) => {
+		    this.text = text;
+		};
+		const helloMessage = new Message('Hello World!');//// Throws "TypeError: Message is not a constructor"
 	</script>
 </head>
 <body>
