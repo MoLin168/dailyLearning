@@ -2,10 +2,66 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Map</title>
+	<title>Map：类似于对象，是键值对的集合</title>
 	<script>
 		//1.Object对象只接受字符串作为键名,Map接受各种类型的值，包括对象作为键名；该点相比而言Map要更合适些；
-		//2.
+		//example one:对象作为键名
+		const m = new Map();
+		const a = {p:'hello world'};
+		m.set(a,'content');
+		console.log("boolean="+m.has(a)+",a2="+m.get(a));
+		m.delete(a);
+		console.log(m.has(a));
+		//example two:数组作为键名
+		const argus = [['name','小明'],['value',13],['height',170]];
+		const mp = new Map(argus);
+		console.log("mp.length="+mp.size);
+		console.log(mp.has('name'));
+		console.log("name="+mp.get('name')+",value="+mp.get('value')+",height="+mp.get('height'));
+		//example three:特殊键名处理
+		const m2 = new Map();
+		m2.set(-0,1);
+		console.log("0和-0就是同一个键="+m2.get(+0));
+		m2.set(true,1);
+		m2.set('true',2);
+		console.log("布尔true和字符串true不是同一个键="+m2.get(true));
+		m2.set(undefined,1);
+		m2.set(null,1);
+		console.log("undefined和null不为同一个键名="+m2.get(undefined));
+		m2.set(NaN,23);
+		console.log("NaN是同一个键名="+m2.get(NaN));
+		//删除Map对象，没有返回值
+		m.clear();
+		console.log(m.size);
+		//遍历方法:
+		//keys()：返回键名的遍历器;
+		//values()：返回键值的遍历器;
+		//entries()：返回所有成员的遍历器;
+		//forEach()：遍历 Map 的所有成员。
+		
+		for(let key of mp.keys()){
+			console.log("key="+key);
+		}
+
+		for(let key of mp.values()){
+			console.log("key2="+key);
+		}
+
+		for(let key of mp.entries()){
+			console.log("key[0]="+key[0]+",key[1]="+key[1]);
+		}
+
+		// for(let [key,values] of mp.entries()){
+		// 	console.log("key="+key+",values="+values);
+		// }
+
+		//等同上述遍历
+		for(let [key,values] of mp){
+			console.log("key="+key+",values="+values);
+		}
+
+		//具有Iterator遍历器
+		console.log(mp[Symbol.iterator] === mp.entries);
 	</script>
 </head>
 <body>
