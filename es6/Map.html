@@ -89,7 +89,18 @@
 			console.log(newObj);
 		})(myMap);
 		//object => Map
-		
+		function objToStrMap(_obj){
+			let strMap = new Map();
+			for(let key of Object.keys(_obj)){
+				console.log('key='+key+',values='+_obj[key]);
+				strMap.set(key,_obj[key]);
+			}
+			return strMap;
+		}
+		console.log(objToStrMap({yes:'true',no:'no'}));
+		let obj = new Object();
+		console.log(obj);
+		//还有Map和JSON的相互转化,类似于JSON.parse()和JSON.stringify()的转化
 	</script>
 </head>
 <body>
