@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Promise</title>
+	<script>
+		//ES6规定，Promise对象是一个构造函数，用来生成Promise实例;Promise有三种状态：pending,refilled(resolved),rejected
+		//举一个简单的栗子
+		function timeout(_ms){
+			return new Promise((resolve,reject) => {
+				setTimeout(resolve,_ms,'done');
+				});
+		};
+		timeout(1000).then((value) => {
+			console.log(value);//done
+		});
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
