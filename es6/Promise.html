@@ -45,6 +45,22 @@
 		let promise = loadImageAsync(url);
 		promise.then(result => console.log(result)).catch(error => console.log(error));
 
+		//.then .catch 属于Promise对象的原生方法
+		//Promise.prototype.catch = Promise.prototype.then(null,rejection) = Promise.prototype.then(undefined,rejection)
+
+		//模拟一个promise抛出异常的写法：
+		const errorPormise = new Promise((resolve,reject) => {
+			try{
+				throw new Error('fail')
+			}catch(e){
+				reject(e);
+			}
+		});
+
+		errorPormise.catch(value => {console.log(value)});
+
+		
+
 	</script>
 </head>
 <body>
