@@ -146,6 +146,7 @@
 		p7.then(() => console.log('no param'));
 
 		//5.注意：立即Promise.resolve()出来的Promise对象在then时是在当前最后执行的，但是要比定时器要快些；
+		//本轮事件循环的末尾:如下面正常执行的三个语句，在执行console.log(1)之后
 		setTimeout(function(){
 			console.log('setTimeout');
 		},0);
@@ -154,9 +155,13 @@
 		//1
 		//测试时序
 		//setTimeout
-		
 
-		//
+		//Promise.reject(reason):方法也会返回一个新的 Promise 实例，该实例的状态为rejected。
+		//reason参数:会原封不动地作为reject的理由，变成后续方法的参数;
+		// const p8 = Promise.reject('出错了');
+		// p8.catch(result => console.log(result));//等同于下面
+		const p9 = new Promise((resolve,reject) => reject('reject 等价于上面的 出错了'));
+		p9.catch(result => console.log(result));
 	</script>
 </head>
 <body>
