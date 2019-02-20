@@ -16,9 +16,9 @@
 	//1.绘制图形
 	ctx.clearRect(0, 0, 200, 200);//先清除
 	ctx.fillStyle = '#ddd';
-	ctx.fillRect(10,10,130,130);//绘制了一个背景为ddd的画布
+	ctx.fillRect(10,10,130,130);//绘制了一个背景为ddd的画布 fillRect(x,y,width,height)
 
-	//绘制一条斜线
+	//1.绘制一条斜线
 	ctx.moveTo(200,0);//线条开始坐标
 	ctx.lineTo(400,400);//线条结束坐标
 	ctx.stroke(); 
@@ -27,8 +27,8 @@
 	let path = new Path2D();
 	//Math.PI = 3.14 = 180°  先画一个圆
 	path.arc(75, 75, 50, 0, Math.PI*2, true);
-	path.moveTo(110,75);
 	
+	path.moveTo(110,75);
 	path.arc(75, 75, 35, 0, Math.PI, false);//画一个底部半圆
 
 	//加两个小圆
