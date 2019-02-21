@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>存储</title>
+	<script>
+		//不管是localStorage还是sessionStorage，对于数据的操作是一样的，但是前者存储没有时间的限制，后者会在浏览器关闭之后自动清除；
+		/*
+		保存：localStorage.setItem(key,value);
+		读取: localStorage.getItem(key);
+		删除单个数据：localStorage.removeItem(key);
+		清除数据:localStorage.clear();
+		得到某个索引的key:localStorage.key(index);
+		 */
+		//cookie的存取范例:存储大小最多不超过4k，超过时间失效
+		function Cookie(){};
+		Cookie.prototype.set = function(_key,_value){
+			let time = new Date();
+			time.setTime(time.getTime()+60*30*24*3600*1000);
+			document.cookie = _key + '=' + _value + ';expires=' + time.toGMTString();
+		};
+		Cookie.prototype.get = function(_key){
+			debugger;
+			let cookieStr = document.cookie;
+			//1.正则写法
+			try{
+				if (new RegExp('.*\\b' + _key + '\\b(\\s*=([^&;]+)).*', 'gi').test(cookieStr)) {
+	                return unescape(RegExp.$2);
+	            } else {
+	                return '';
+	            }
+        	}catch(_error){
+        		//2.原生写法
+        		this.oriGet(cookieStr,_key);
+        	}
+			
+		};
+		Cookie.prototype.oriGet = function(_cookieStr,_key){
+			let str = _cookieStr;
+			if(str.length > 0 && str.indexOf(_key) != -1){
+				let arr = str.split(';');
+				for(let i = 0,len = arr.length;i < len;i++){
+					let arrValue = arr.split('=');
+					if(arrValue[0] == _key){
+						return arrValue[1];
+					}else{
+						return '';
+					}
+				}
+			}
+		};
+		//测试下
+		let cookie = new Cookie();
+		console.log(cookie);
+		cookie.set('name','xiaoming');
+		console.log("cookie="+cookie.get('name'));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
