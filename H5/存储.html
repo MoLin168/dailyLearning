@@ -13,15 +13,16 @@
 		得到某个索引的key:localStorage.key(index);
 		 */
 		//cookie的存取范例:存储大小最多不超过4k，超过时间失效
+		//要用apache服务器打开，不然cookie为空
 		function Cookie(){};
-		Cookie.prototype.set = function(_key,_value){
+		Cookie.prototype.set = function(name,value){
 			let time = new Date();
-			time.setTime(time.getTime()+60*30*24*3600*1000);
-			document.cookie = _key + '=' + _value + ';expires=' + time.toGMTString();
+			time.setTime(time.getTime()+3*30*24*3600*1000);
+			document.cookie = name + '=' + value + ';expires=' + time.toGMTString()+";path=/";
 		};
 		Cookie.prototype.get = function(_key){
-			debugger;
 			let cookieStr = document.cookie;
+			console.log("cookieStr="+cookieStr);
 			//1.正则写法
 			try{
 				if (new RegExp('.*\\b' + _key + '\\b(\\s*=([^&;]+)).*', 'gi').test(cookieStr)) {
@@ -33,7 +34,6 @@
         		//2.原生写法
         		this.oriGet(cookieStr,_key);
         	}
-			
 		};
 		Cookie.prototype.oriGet = function(_cookieStr,_key){
 			let str = _cookieStr;
@@ -52,8 +52,9 @@
 		//测试下
 		let cookie = new Cookie();
 		console.log(cookie);
-		cookie.set('name','xiaoming');
-		console.log("cookie="+cookie.get('name'));
+		cookie.set('aaaa','done');
+		console.log("cookie="+cookie.get('aaaa'));
+
 	</script>
 </head>
 <body>
