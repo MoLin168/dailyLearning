@@ -19,6 +19,7 @@
 	密码：<input type="text" name="password" form="form1">
 
 	<!--formaction属性：会覆盖掉form中的action指向的文件地址,能用在input的type为submit和image时-->
+	<!--在input(仅限type为submit或者image配合使用)加上以(form+...的属性)就是去覆盖form表单中的属性,再比如：formmethod-->
 	<br><br>
 	<form action="php/demo.php">
 		用户名：<input type="text" name="user_name"><br>
@@ -26,7 +27,6 @@
 		<input type="submit"><br>
 		<input type="submit" value="管理员提交" formaction="php/adminDemo.php">
 	</form>
-	<!--在input(仅限type为submit或者image配合使用)加上以(form+...的属性)就是去覆盖form表单中的属性,再比如：formmethod-->
 	
 	<br><br>
 	<!--multiple属性：规定input元素可以选择多个值 比如上传多个，type为file时，还有type为email时-->
@@ -50,6 +50,6 @@
 		<input type="text" name="password" placeholder="fill your password" required><br>
 		<input type="submit">
 	</form>
-	
+
 </body>
 </html>
