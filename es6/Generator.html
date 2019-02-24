@@ -90,7 +90,7 @@
 			let [prev,curr] = [0,1];
 			for(;;){
 				yield curr;
-				[prev,curr] = [curr,prev + curr];
+				[prev,curr] = [curr,prev + curr];//解构赋值
 			}
 		}
 
@@ -101,6 +101,8 @@
 
 		//for...of循环任意个对象object
 		function * objectEnteries(obj){
+			//Object.keys(obj):返回属性数组;
+			//Reflect.ownKeys(obj):返回所有属性key,包含方法属性
 			let propKeys = Reflect.ownKeys(obj);
 
 			for(let propKey of propKeys){
