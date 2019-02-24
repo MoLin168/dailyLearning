@@ -32,7 +32,7 @@
 			for(let i = 0,len = _arr.length;i < len;i++){
 				let item = _arr[i];
 				if(typeof item != 'number'){
-					yield* flat(item);//yield*
+					yield* flat(item);//yield* 用来在一个 Generator 函数里面执行另一个 Generator 函数
 				}else{
 					yield item;
 				}
