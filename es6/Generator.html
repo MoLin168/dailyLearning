@@ -31,7 +31,7 @@
 		let flat = function * (_arr){
 			for(let i = 0,len = _arr.length;i < len;i++){
 				let item = _arr[i];
-				if(typeof item != 'number'){
+				if(typeof item != 'number'){//Array.isArray(item) 相同的判断是否是数组
 					yield* flat(item);//yield* 用来在一个 Generator 函数里面执行另一个 Generator 函数
 				}else{
 					yield item;

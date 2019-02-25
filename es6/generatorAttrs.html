@@ -6,23 +6,23 @@
 	<script>
 		//generator的throw，抛除异常方法
 		let gen = function * (){
-			// try{
-			// 	yield;
-			// }catch(e){
-			// 	console.log('内部异常抛出='+e);
-			// }
-			// 
-			//去掉内部的try...catch
-			while(true){
+			try{
 				yield;
-				console.log('内部捕获打印='+e);
+			}catch(e){
+				console.log('内部异常抛出='+e);
 			}
+			
+			//去掉内部的try...catch
+			// while(true){
+			// 	yield;
+			// 	console.log('内部捕获打印='+e);
+			// }
 		};
 		let g = gen();
 		g.next();//执行next才能使generator函数继续执行，不然只会到yield产出表达式。同时抛出异常的会报错（不先执行next）
 	
 		try{//只执行一次
-			g.throw('a');//是遍历器throw方法
+			g.throw('a');//是generator返回的遍历器对象下的throw方法
 			g.throw(new Error('error'));//throw方法可以接受参数
 		}catch(e){
 			console.log('外部异常抛出='+e);
@@ -37,8 +37,6 @@
 
 		//如果generator函数内部没有try...catch，那么throw出来的异常将被外部的捕获；	
 		//generator的throw方法被捕获后，会自动执行一次next方法；
-		
-
 
 		//return方法：返回固定的值，并且终结generator函数
 		function * gener(){
@@ -84,8 +82,8 @@
 		  yield* 'hello';
 		})();
 
-		read.next().value // "hello"
-		read.next().value // "h"	
+		console.log(read.next().value); // "hello"
+		console.log(read.next().value); // "h"	
 
 		//含有return语句的generator函数,会return出该值，不影响遍历
 		function * aa(){
@@ -99,7 +97,7 @@
 			console.log(result);
 		};
 
-		let ad = [...bb(aa())];//output
+		let ad = [...bb(aa())];//[...bb(aa())]//output
 		console.log(ad);//[1,2]
 
 		//作为对象属性的generator函数
