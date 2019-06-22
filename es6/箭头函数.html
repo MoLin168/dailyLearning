@@ -40,6 +40,8 @@
 		    this.name = name;
 		}
 
+		
+
 		Cat.prototype.sayCatName = () => {
 		    console.log(this === window); // => true
 		    return this.name;//当使用箭头函数时，此时调用这个方法，this已经被指向为window对象了，而不是new出来的实例
