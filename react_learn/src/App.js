@@ -46,11 +46,51 @@ const elements = (
 
 
 //4.state
-class ReactTemplate extends React.Component {
+class TimeShow extends React.Component {
   constructor(props) {
     super(props)
     this.state = {date: new Date()}
+    this.timer = null
   }
+
+  //5.React 生命周期
+
+  //5.1.在组件完成挂载到 DOM 后调用，在整个组件生命周期中只会被调用一次，获取 API 接口数据。
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      this.tick()
+    }, 1000)
+  }
+
+  //组件的props或state发生变化时开始调用
+  // shouldComponentUpdate (nextProps) {
+  //   if (nextProps.someThings === this.props.someThings) {
+  //     return false
+  //   } else {
+  //     return true
+  //   }
+  // }
+
+  //5.2 在组件完成解绑时开始调用
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    })
+  }
+  render(h1) {
+    return <h2>now time {this.state.date.toLocaleTimeString()}</h2>
+  }
+}
+
+class ReactTemplate extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   render(h) {
     return (
       <div className="App">
@@ -60,7 +100,7 @@ class ReactTemplate extends React.Component {
             Edit <code>src/App.js</code> and save to reload.
           </p>
           {element}
-          <h1>it is {this.state.date.toLocaleTimeString()}</h1>
+          {time}
           <a
             className="App-link"
             href="https://reactjs.org"
@@ -74,7 +114,7 @@ class ReactTemplate extends React.Component {
     )
   }
 }
-
+const time = <TimeShow />
 const el = <ReactTemplate />
 
 //App就是一个组件 函数组件写法
