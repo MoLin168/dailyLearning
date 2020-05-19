@@ -48,7 +48,7 @@ const elements = (
 //4.state
 class TimeShow extends React.Component {
   constructor(props) {
-    super(props)
+    super(props)//React.prototype.constructor.call(this)
     this.state = {date: new Date()}
     this.timer = null
   }
@@ -74,6 +74,19 @@ class TimeShow extends React.Component {
   //5.2 在组件完成解绑时开始调用
   componentWillUnmount() {
     clearInterval(this.timer)
+  }
+
+  //5.3组件更新后进行调用
+  componentDidUpdate(prevProps) {
+    //典型用法比较porps
+    if (this.props.userID !== prevProps.userID) {
+      //fetchData
+    }
+  }
+
+  //5.4 在后代组件抛出错误后被调用
+  componentDidCatch(error, info) {
+    
   }
 
   tick() {
