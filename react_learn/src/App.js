@@ -102,6 +102,20 @@ class TimeShow extends React.Component {
 class ReactTemplate extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {isToggleOn: true}
+
+    // 为了在回调中使用 `this`，这个绑定是必不可少的
+    //第一种事件点击写法 下面的handleclick这样写  handleClick() {//.....}
+    // this.handleClick = this.handleClick.bind(this)
+  }
+
+  //事件点击 第二种写法
+  handleClick = (event) => {
+    console.log(`21111`)
+    console.log(event) //[object]
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }))
   }
 
   render(h) {
@@ -112,6 +126,9 @@ class ReactTemplate extends React.Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
+          <button onClick={(e) => this.handleClick(e)}>
+            {this.state.isToggleOn ? 'ON': 'OFF'}
+          </button>
           {element}
           {time}
           <a
