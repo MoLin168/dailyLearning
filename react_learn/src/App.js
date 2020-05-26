@@ -111,8 +111,6 @@ class ReactTemplate extends React.Component {
 
   //事件点击 第二种写法
   handleClick = (event) => {
-    console.log(`21111`)
-    console.log(event) //[object]
     this.setState(state => ({
       isToggleOn: !state.isToggleOn
     }))
