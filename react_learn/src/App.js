@@ -105,7 +105,7 @@ class ReactTemplate extends React.Component {
     this.state = {isToggleOn: true}
 
     // 为了在回调中使用 `this`，这个绑定是必不可少的
-    //第一种事件点击写法 下面的handleclick这样写  handleClick() {//.....}
+    //6.第一种事件点击写法 下面的handleclick这样写  handleClick() {//.....}
     // this.handleClick = this.handleClick.bind(this)
   }
 
@@ -137,11 +137,53 @@ class ReactTemplate extends React.Component {
           >
             Learn React
           </a>
+          <Greeting isLoginIn={true} />
         </header>
     </div>
     )
   }
 }
+
+//7.条件渲染
+class UserGreeting extends React.Component {
+  render() {
+    return <h1> Welcome back! </h1>
+  }
+}
+
+class GuestGreeting extends React.Component {
+  render() {
+    return <h1> Please sign up! </h1>
+  }
+}
+
+class Greeting extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render(h) {
+    // console.log(this.props)
+    const isLogined = this.props.isLoginIn
+  
+    if (isLogined) {
+      return <UserGreeting />
+    } 
+    return <GuestGreeting />
+  }
+}
+
+//函数式编程 传参数
+// function Greeting(props) {
+//   const isLoginIn = props.isLoginIn
+
+//   if (isLoginIn) {
+//     return <UserGreeting /> 
+//   }
+//   return <GuestGreeting />
+// }
+
+
 const time = <TimeShow />
 const el = <ReactTemplate />
 
