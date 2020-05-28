@@ -7,6 +7,7 @@ import './App.css';
 //1.1一行代码直接写
 const name = `ROSE`
 const element = <h1>Hello, {name}!</h1>
+const Messges = ['React', 'learn react', 'learn React good', 'learn React interested']
 
 //1.2多个dom，用()表示
 const elements = (
@@ -138,6 +139,8 @@ class ReactTemplate extends React.Component {
             Learn React
           </a>
           <Greeting isLoginIn={true} />
+          <Mailbox unreadMessages={Messges}/>
+          <Page />
         </header>
     </div>
     )
@@ -182,6 +185,60 @@ class Greeting extends React.Component {
 //   }
 //   return <GuestGreeting />
 // }
+
+//7.1 与运算符 &&  三目运算符
+  class Mailbox extends React.Component {
+    constructor(props) {
+      super(props)
+      this.unreadMessages = props.unreadMessages
+    }
+    render() {
+      return (
+        <div>
+          {this.unreadMessages.length > 0 && 
+          <h2>
+            {this.unreadMessages.length === 3 ? this.unreadMessages.join('、') : this.unreadMessages.join('~')}
+          </h2>
+          }
+        </div>
+      )
+    }
+  }
+
+//7.2 阻止组件渲染 通过render为null对已经渲染的组件进行隐藏
+
+  function WarningBanner(props) {
+    if (!props.warn) {
+      return null
+    }
+
+    return <div>Warning</div>
+  }
+
+  class Page extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {showWarning: true}
+    }
+
+    handleToggleClick = (event) => {
+      this.setState(state =>({
+        showWarning: !state.showWarning
+      }))
+    }
+
+    render() {
+      return (
+        <div>
+          <WarningBanner warn={this.state.showWarning}/>
+          <button onClick={this.handleToggleClick}>
+            { this.state.showWarning ? 'Hide': 'Show' }
+          </button>
+        </div>
+      )
+    }
+  }
+
 
 
 const time = <TimeShow />
