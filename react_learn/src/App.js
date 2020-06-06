@@ -146,6 +146,9 @@ class ReactTemplate extends React.Component {
           <Page />
           <NumberList numbers={numbers}/>
           <NameForm />
+          <Single />
+          <Double />
+          <Fan2_extends />
         </header>
     </div>
     )
@@ -244,7 +247,7 @@ class ReactTemplate extends React.Component {
     }
   }
 
-  //7.3 key值的重要性
+  //8 key值的重要性
   function ListItem(props) {
     // 正确！这里不需要指定 key：
     return <li>{props.value}</li>;
@@ -264,7 +267,7 @@ class ReactTemplate extends React.Component {
     );
   }
 
-  //7.4表单form -input textarea select类似
+  //9 表单form -input textarea select类似
   class NameForm extends React.Component {
     constructor(props) {
       super(props)
@@ -307,6 +310,64 @@ class ReactTemplate extends React.Component {
         </form>
       )
     }
+  }
+
+  //10.1 组合 -包含关系
+  function Fan(props) {
+    console.log(props)
+    return (
+      <div className="top">
+        {props.children}
+      </div>
+    ) 
+  }
+
+  //不完全通过children来控制
+  function Fan2(props) {
+    console.log(props)
+    return (
+      <div className="left-right">
+        <div className="left">
+          {props.left}
+        </div>
+        <div className="right">
+          {props.right}
+        </div>
+      </div>
+    )
+  }
+
+  function Single() {
+    return (
+      <Fan >
+        <div className="slot1">我是插槽数据1</div>
+        <p className="slot2">我是插槽数据2</p>
+      </Fan>
+    )
+  }
+
+  function Double() {
+    return (
+      <Fan2 
+        left={<Left />}
+        right={<Right />}
+      />
+    )
+  }
+
+  function Left() {
+    return <div className="LeftComponent">LeftComponent</div>
+  }
+
+  function Right() {
+    return <div className="RightComponent">RightComponent</div>
+  }
+
+  //10.2 组合 -特例关系
+  function Fan2_extends() {
+    return (
+      <Fan2 left="title" right="info"/>
+    )
   }
 
 const time = <TimeShow />
