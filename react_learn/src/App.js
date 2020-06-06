@@ -8,27 +8,28 @@ import './App.css';
 const name = `ROSE`
 const element = <h1>Hello, {name}!</h1>
 const Messges = ['React', 'learn react', 'learn React good', 'learn React interested']
+const numbers = [1,2,3,4,5]
 
 //1.2多个dom，用()表示
-const elements = (
-  <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        {element}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-  </div>
-)
+// const elements = (
+//   <div className="App">
+//       <header className="App-header">
+//         <img src={logo} className="App-logo" alt="logo" />
+//         <p>
+//           Edit <code>src/App.js</code> and save to reload.
+//         </p>
+//         {element}
+//         <a
+//           className="App-link"
+//           href="https://reactjs.org"
+//           target="_blank"
+//           rel="noopener noreferrer"
+//         >
+//           Learn React
+//         </a>
+//       </header>
+//   </div>
+// )
 
 //2.组件形式 组件名称首字母要大写 类似下面原先的App
 
@@ -141,6 +142,7 @@ class ReactTemplate extends React.Component {
           <Greeting isLoginIn={true} />
           <Mailbox unreadMessages={Messges}/>
           <Page />
+          <NumberList numbers={numbers}/>
         </header>
     </div>
     )
@@ -166,7 +168,7 @@ class Greeting extends React.Component {
   }
 
   render(h) {
-    // console.log(this.props)
+    console.log(this.props)
     const isLogined = this.props.isLoginIn
   
     if (isLogined) {
@@ -239,7 +241,25 @@ class Greeting extends React.Component {
     }
   }
 
+  //7.3 key值的重要性
+  function ListItem(props) {
+    // 正确！这里不需要指定 key：
+    return <li>{props.value}</li>;
+  }
+  
+  function NumberList(props) {
+    const numbers = props.numbers;
+    const listItems = numbers.map((number) =>
+      // 正确！key 应该在数组的上下文中被指定
+      <ListItem key={number.toString()} value={number} />
+    );
 
+    return (
+      <ul>
+        {listItems}
+      </ul>
+    );
+  }
 
 const time = <TimeShow />
 const el = <ReactTemplate />
