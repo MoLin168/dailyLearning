@@ -96,9 +96,11 @@ class TimeShow extends React.Component {
       date: new Date()
     })
   }
+
   render(h1) {
     return <h2>now time {this.state.date.toLocaleTimeString()}</h2>
   }
+
 }
 
 class ReactTemplate extends React.Component {
@@ -111,7 +113,7 @@ class ReactTemplate extends React.Component {
     // this.handleClick = this.handleClick.bind(this)
   }
 
-  //事件点击 第二种写法
+  //事件点击 第二种写法 箭头函数
   handleClick = (event) => {
     this.setState(state => ({
       isToggleOn: !state.isToggleOn
@@ -143,6 +145,7 @@ class ReactTemplate extends React.Component {
           <Mailbox unreadMessages={Messges}/>
           <Page />
           <NumberList numbers={numbers}/>
+          <NameForm />
         </header>
     </div>
     )
@@ -150,33 +153,33 @@ class ReactTemplate extends React.Component {
 }
 
 //7.条件渲染
-class UserGreeting extends React.Component {
-  render() {
-    return <h1> Welcome back! </h1>
-  }
-}
-
-class GuestGreeting extends React.Component {
-  render() {
-    return <h1> Please sign up! </h1>
-  }
-}
-
-class Greeting extends React.Component {
-  constructor(props) {
-    super(props)
+  class UserGreeting extends React.Component {
+    render() {
+      return <h1> Welcome back! </h1>
+    }
   }
 
-  render(h) {
-    console.log(this.props)
-    const isLogined = this.props.isLoginIn
-  
-    if (isLogined) {
-      return <UserGreeting />
-    } 
-    return <GuestGreeting />
+  class GuestGreeting extends React.Component {
+    render() {
+      return <h1> Please sign up! </h1>
+    }
   }
-}
+
+  class Greeting extends React.Component {
+    constructor(props) {
+      super(props)
+    }
+
+    render(h) {
+      console.log(this.props)
+      const isLogined = this.props.isLoginIn
+    
+      if (isLogined) {
+        return <UserGreeting />
+      } 
+      return <GuestGreeting />
+    }
+  }
 
 //函数式编程 传参数
 // function Greeting(props) {
@@ -259,6 +262,51 @@ class Greeting extends React.Component {
         {listItems}
       </ul>
     );
+  }
+
+  //7.4表单form -input textarea select类似
+  class NameForm extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {value: ''}
+      this.handleChange = this.handleChange.bind(this)
+      this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    //异常点：箭头函数的写法这里打印event.target为null
+    // handleChange = (event) => {
+    //   console.log(event)
+    //   // this.setState(state => ({
+    //   //   value: event.target.value
+    //   // }))
+    // }
+    handleChange(event) {
+      this.setState({value: event.target.value})
+    }
+
+    // 异常点：箭头函数的写法这里打印event.target为null
+    // handleSubmit = (event) => {
+    //   console.log(`提交的名字是：${this.state.value}`)
+    //   console.log(event)
+    //   event.preventDefault();
+    // }
+    
+    handleSubmit(event) {
+      console.log(`提交的名字是：${this.state.value}`)
+      event.preventDefault()
+    }
+
+    render() {
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            名字：
+              <input  placeholder="请输入" type="text" value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="提交"/>
+        </form>
+      )
+    }
   }
 
 const time = <TimeShow />
